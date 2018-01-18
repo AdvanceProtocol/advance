@@ -1,0 +1,22 @@
+[Unit]
+Description=Advance's distributed currency daemon
+After=network.target
+
+[Service]
+User=advanceprotocol
+Group=advanceprotocol
+
+Type=forking
+PIDFile=/var/lib/advanced/advanced.pid
+ExecStart=/usr/bin/advanced -daemon -pid=/var/lib/advanced/advanced.pid \
+-conf=/etc/advanceprotocol/advance.conf -datadir=/var/lib/advanced -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

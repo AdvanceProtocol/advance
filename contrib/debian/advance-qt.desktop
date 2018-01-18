@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Advance
+Comment=Advance P2P Cryptocurrency
+Comment[fr]=Advance, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Advance, eşten eşe kriptografik sanal para birimi
+Exec=advance-qt %u
+Terminal=false
+Type=Application
+Icon=advance128
+MimeType=x-scheme-handler/advance;
+Categories=Office;Finance;

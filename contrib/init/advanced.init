@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  advanced The Advance Protocol server.
+#
+#
+# chkconfig: 345 80 20
+# description: advanced
+# processname: advanced
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/advanced, see below
+if [ -f /etc/sysconfig/advanced ]; then
+        . /etc/sysconfig/advanced
+fi
+
+RETVAL=0
+
+prog=advanced
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/advanced
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/advanced}
+
+# advanced defaults to /usr/bin/advanced, override with BITCOIND_BIN
+advanced=${BITCOIND_BIN-/usr/bin/advanced}
+
+# advanced opts default to -disablewallet, override with BITCOIND_OPTS
+advanced_opts=${BITCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $advanced $advanced_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

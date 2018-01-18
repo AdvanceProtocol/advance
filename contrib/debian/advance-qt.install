@@ -1,0 +1,6 @@
+usr/local/bin/advance-qt usr/bin
+share/pixmaps/advance32.xpm usr/share/pixmaps
+share/pixmaps/advance16.xpm usr/share/pixmaps
+share/pixmaps/advance128.png usr/share/pixmaps
+debian/advance-qt.desktop usr/share/applications
+debian/advance-qt.protocol usr/share/kde4/services/
