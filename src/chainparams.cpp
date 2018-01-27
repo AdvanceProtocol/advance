@@ -117,7 +117,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0001].nThreshold = 3226; // 80% of 4032
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000002b4644967277ce839");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0000048c2773ffa14cfbde0c0834cd0bcde6f3e067bf2a05c7612490264321f9"); // genesis
@@ -133,8 +133,8 @@ public:
         pchMessageStart[3] = 0xd2;
         vAlertPubKey = ParseHex("");
         nDefaultPort = 30888;
-        nMaxTipAge = 604800;
-        nDelayGetHeadersTime = 604800;
+        nMaxTipAge = 6 * 60 * 60;
+        nDelayGetHeadersTime = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1515711600, 889239948, 0x1e0ffff0, 1, 50 * COIN);
